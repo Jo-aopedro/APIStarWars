@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./.CSS/main.css">  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Star Wars API</h1>
+    <div>
+        <ul id="Filmes"><h2>Filmes</h2></ul>
+        <ul id="Personagens"><h2>Personagens</h2></ul>
+        <ul id="Planetas"><h2>Planetas</h2></ul>
+        <ul id="Especies"><h2>Especies</h2></ul>
+        <ul id="Naves"><h2>Naves</h2></ul>
+        <ul id="Veículos"><h2>Veículos</h2></ul>    
+    </div>
+    
+</body>
+</html>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+</script>
+
+<script>
+   var obj = 'https://swapi.dev/api/';
+   $.getJSON(obj, function(data){
+        $.getJSON(data.films, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Filmes').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.title)))
+            })
+        })
+        $.getJSON(data.people, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Personagens').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.name)))
+            })
+        })
+        $.getJSON(data.planets, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Planetas').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.name)))
+            })
+        })
+        $.getJSON(data.species, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Especies').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.name)))
+            })
+        })
+        $.getJSON(data.starships, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Naves').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.name)))
+            })
+        })
+        $.getJSON(data.vehicles, function(object){
+            $(object.results).each(function(i, itens){
+                $('#Veículos').append($("<li>")
+                .append($("<a href = " + itens.url + " " + "target=" + "_blank" + ">" ).append(itens.name)))
+            })
+        })
+        
+    })
+
+	.fail(function(e){
+		console.log('error:');
+		console.error(e);
+	})
+	
+</script>
+
+<br><br><br><br><br><br><br>
